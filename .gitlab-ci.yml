@@ -36,6 +36,8 @@ variables:
   REVIEW_REPLICAS: 1
   STAGING_REPLICAS: 1
   PRODUCTION_REPLICAS: 2
+  REVIEW_DOMAIN: grimoire.benwelker.com
+  STAGING_DOMAIN: grimoire.benwelker.com
   
 
 cache:
