@@ -1,1 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+/* For some reason, angular or spring (not sure which) freaks out if this file is empty. */
+#notempty {
+  color: red;
+}
