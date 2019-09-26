@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>edu.byu.hbll.maven</groupId>
+    <artifactId>application-parent</artifactId>
+    <version>3.3.3</version>
+  </parent>
+
+  <groupId>edu.byu.hbll</groupId>
+  <artifactId>grimoire</artifactId>
+  <version>1.0.0</version>
+  <packaging>jar</packaging>
+
+  <name>${project.groupId}:${project.artifactId}</name>
+  <description>Grimoire</description>
+  <url>https://gitlab.com/ringmaster217/${project.artifactId}</url>
+
+  <properties>
+    <frontend.install.phase>generate-resources</frontend.install.phase>
+    <frontend.package.phase>prepare-package</frontend.package.phase>
+    <frontend.contextRoot>grimoire</frontend.contextRoot>
+    <frontend.name>grimoire</frontend.name>
+    <docker.repository>mages/${project.artifactId}</docker.repository>
+    <scm.repository>gitlab.com/ringmaster217/${project.artifactId}</scm.repository>
+  </properties>
+
+  <scm>
+    <connection>scm:git:git://${scm.repository}.git</connection>
+    <developerConnection>scm:git:ssh://${scm.repository}.git</developerConnection>
+    <url>https://${scm.repository}</url>
+  </scm>
+
+  <dependencies>
+        
+  </dependencies>
+
+</project>

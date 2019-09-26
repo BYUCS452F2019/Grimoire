@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration>
+<configuration>
+  
+  <property name="level" value="${mages.grimoire.log.level:-${edu.byu.hbll.default.log.level:-INFO}}" />
+  <property name="appender" value="${mages.grimoire.log.appender:-${edu.byu.hbll.default.log.appender:-console}}" />
+  <property name="dir" value="${mages.grimoire.log.dir:-${edu.byu.hbll.default.log.dir:-/srv/log}}" />
+  <property name="kafka.servers" value="${mages.grimoire.log.kafka.servers:-${edu.byu.hbll.default.log.kafka.servers.ssl:-${edu.byu.hbll.default.log.kafka.servers:-localhost:9092}}}" />
+  <property name="kafka.ssl" value="${mages.grimoire.log.kafka.ssl:-${edu.byu.hbll.default.log.kafka.ssl:-false}}" />
+  
+  <root level="${level}">
+    
+    <!-- This RollingFileAppender is used to output log statements to a file. The resulting log file is then monitored for 
+      size and once it grows past a certain point, it is "rotated" (the contents are copied out and compressed to save space, and 
+      the log file is reset so that new log statements can be written to the original location). This particular appender will 
+      write to /srv/log/grimoire/grimoire.log by default, but the destination directory can be customized at deploy time 
+      by setting the following system property: mages.grimoire.log.dir. -->
+    <if condition='"${appender}".toLowerCase().contains("file")'>
+      <then>
+        <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+          <file>${dir}/grimoire/grimoire.log</file>
+          <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <fileNamePattern>${dir}/grimoire/grimoire.%d{yyyyMMdd}.%i.log.gz</fileNamePattern>
+            <maxFileSize>100MB</maxFileSize>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>1GB</totalSizeCap>
+          </rollingPolicy>
+          <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p - %m%n</pattern>
+          </encoder>
+        </appender>
+      </then>
+    </if>
+    
+    <!-- The KafkaAppender outputs logs to Apache Kafka. There should be a consumer that logs the messages to files. -->      
+    <if condition='"${appender}".toLowerCase().contains("kafka")'>
+      <then>
+        <appender name="kafka" class="edu.byu.hbll.logback.kafka.KafkaAppender">
+          <topic>log</topic>
+          <logName>${kafka.log.name:-grimoire}</logName>
+          <kafkaServers>${kafka.servers}</kafkaServers>
+          <useSsl>${kafka.ssl}</useSsl>
+          <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p - %m%n</pattern>
+          </layout>
+        </appender>
+      </then>
+    </if>
+    
+    <!-- The ConsoleAppender is used to output logs directly to the console (or in the case of a Java EE project, to the 
+      application server's own log file). This should not be enabled on the servers, but it can be useful during initial development. -->
+    <if condition='"${appender}".toLowerCase().contains("console")'>
+      <then>
+        <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+          <encoder>
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} %-5p - %m%n</pattern>
+          </encoder>
+        </appender>
+      </then>
+    </if>
+    
+  </root>
+
+  <!-- This block suppresses low-level logs from common 3rd-party libraries such that only ERROR-level log statements will 
+    be propagated up to the appenders. This can be useful for very noisy libraries (such as Mongo). -->
+  <logger name="ch.qos.logback" level="ERROR" />
+  <logger name="org.apache" level="ERROR" />
+  <logger name="org.mongodb" level="ERROR" />
+
+</configuration>

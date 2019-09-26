@@ -1,0 +1,7 @@
+# ------------------------------------------------------------------------------
+# Configuration unique to this application's tests.  Will be loaded as the
+# `config` variable of the Application class for tests that list the active
+# profile as test.
+# ------------------------------------------------------------------------------
+
+config: {}

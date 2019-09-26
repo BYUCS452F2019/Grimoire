@@ -1,0 +1,6 @@
+# ------------------------------------------------------------------------------
+# Configuration unique to this application.  Will be loaded as the `config`
+# variable of the Application class.
+# ------------------------------------------------------------------------------
+
+config: {}

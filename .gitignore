@@ -1,0 +1,12 @@
+/*
+!/bin/
+!/src/
+!/.gitignore
+!/.gitlab-ci.yml
+!/Dockerfile
+!/LICENSE.md
+!/pom.xml
+!/README.md
+!/lombok.config
+/src/main/resources/config
+/src/test/resources/config

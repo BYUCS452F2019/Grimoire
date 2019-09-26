@@ -1,0 +1,30 @@
+# ------------------------------------------------------------------------------
+# Boilerplate configuration.  You should not change these values, but they can
+# be overridden using configuration profiles.
+# ------------------------------------------------------------------------------
+
+spring:
+  profiles:
+    include: config
+
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: "*"
+  server:
+    port: 8081
+
+# The path, relative to the server root, where this application will deploy.
+server:
+  use-forward-headers: true
+  servlet:
+    context-path: /grimoire
+
+# Disables Spring Boot integration for Keycloak by default.
+keycloak:
+  enabled: false
