@@ -23,7 +23,7 @@ management:
 server:
   use-forward-headers: true
   servlet:
-    context-path: /grimoire
+    context-path: /
 
 # Disables Spring Boot integration for Keycloak by default.
 keycloak:
