@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.jdbc.repository.config.EnableJdbcRepositories;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
@@ -22,25 +23,26 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 @EnableConfigurationProperties
 @ConfigurationProperties
+@EnableJdbcRepositories
 public class Application {
-  
+
   private static final UncheckedObjectMapper objectMapper = ObjectMapperFactory.newUnchecked();
-  
+
   private JsonNode config;
 
   /**
    * Launches this application.
-   * 
+   *
    * @param args the command line arguments provided at runtime
    */
   public static void main(String[] args) {
     SpringApplication.run(Application.class, args);
   }
-  
+
   /**
    * Sets the application-specific configuration. This method will get called at deployment if there
    * is a top-level object called "config" in your Spring Boot configuration file(s).
-   * 
+   *
    * @param config the map containing raw config data parsed from the Spring Boot configuration
    */
   public void setConfig(Map<String, Object> config) {
