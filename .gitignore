@@ -10,3 +10,6 @@
 !/lombok.config
 /src/main/resources/config
 /src/test/resources/config
+!schema.md
+!Ideas-N
+!Grimoire\ DB.pdf
