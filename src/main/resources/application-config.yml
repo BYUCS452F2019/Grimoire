@@ -11,3 +11,17 @@ spring:
     username: grimoire
     password: grimoire1234
     initialization-mode: always
+keycloak:
+  enabled: true
+  auth-server-url: https://kc.lib.byu.edu/auth
+  realm: grimoire
+  resource: grimoire
+  ssl-required: external
+  credentials:
+    secret: 4edc1ea1-7fdf-4c2d-8c0b-efb7ebb4e491
+  security-constraints:
+    - authRoles:
+      - "offline_access"
+      securityCollections:
+        - patterns:
+          - "/*"

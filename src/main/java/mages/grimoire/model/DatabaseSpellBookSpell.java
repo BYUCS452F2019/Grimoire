@@ -3,10 +3,10 @@ package mages.grimoire.model;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 
-/** UserSpellBook */
+/** SpellBook */
 @Data
-public class UserSpellBook {
+public class DatabaseSpellBookSpell {
 
-  @Id private String user_id;
-  private int bookId;
+  @Id private int bookId;
+  private int spellId;
 }

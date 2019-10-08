@@ -6,12 +6,11 @@ import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
 
-/** SpellBook */
+/** User */
 @Data
-public class SpellBook {
+public class User {
 
-  @Id private int bookId;
+  @Id private String userId;
   private String name;
-
-  @Transient private List<Spell> spells = new LinkedList<>();
+  @Transient private List<SpellBook> books = new LinkedList<>();
 }
