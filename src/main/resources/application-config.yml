@@ -4,3 +4,23 @@
 # ------------------------------------------------------------------------------
 
 config: {}
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/grimoire?useLegacyDatetimeCode=false&serverTimezone=America/Denver
+    username: grimoire
+    password: grimoire1234
+keycloak:
+  enabled: true
+  auth-server-url: https://kc.lib.byu.edu/auth
+  realm: grimoire
+  resource: grimoire
+  ssl-required: external
+  credentials:
+    secret: 4edc1ea1-7fdf-4c2d-8c0b-efb7ebb4e491
+  security-constraints:
+    - authRoles:
+      - "offline_access"
+      securityCollections:
+        - patterns:
+          - "/*"

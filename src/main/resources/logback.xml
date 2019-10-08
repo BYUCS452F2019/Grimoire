@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE configuration>
 <configuration>
-  
+
   <property name="level" value="${mages.grimoire.log.level:-${edu.byu.hbll.default.log.level:-INFO}}" />
   <property name="appender" value="${mages.grimoire.log.appender:-${edu.byu.hbll.default.log.appender:-console}}" />
   <property name="dir" value="${mages.grimoire.log.dir:-${edu.byu.hbll.default.log.dir:-/srv/log}}" />
   <property name="kafka.servers" value="${mages.grimoire.log.kafka.servers:-${edu.byu.hbll.default.log.kafka.servers.ssl:-${edu.byu.hbll.default.log.kafka.servers:-localhost:9092}}}" />
   <property name="kafka.ssl" value="${mages.grimoire.log.kafka.ssl:-${edu.byu.hbll.default.log.kafka.ssl:-false}}" />
-  
+
   <root level="${level}">
-    
+
     <!-- This RollingFileAppender is used to output log statements to a file. The resulting log file is then monitored for 
       size and once it grows past a certain point, it is "rotated" (the contents are copied out and compressed to save space, and 
       the log file is reset so that new log statements can be written to the original location). This particular appender will 
@@ -31,8 +31,8 @@
         </appender>
       </then>
     </if>
-    
-    <!-- The KafkaAppender outputs logs to Apache Kafka. There should be a consumer that logs the messages to files. -->      
+
+    <!-- The KafkaAppender outputs logs to Apache Kafka. There should be a consumer that logs the messages to files. -->
     <if condition='"${appender}".toLowerCase().contains("kafka")'>
       <then>
         <appender name="kafka" class="edu.byu.hbll.logback.kafka.KafkaAppender">
@@ -46,7 +46,7 @@
         </appender>
       </then>
     </if>
-    
+
     <!-- The ConsoleAppender is used to output logs directly to the console (or in the case of a Java EE project, to the 
       application server's own log file). This should not be enabled on the servers, but it can be useful during initial development. -->
     <if condition='"${appender}".toLowerCase().contains("console")'>
@@ -58,7 +58,7 @@
         </appender>
       </then>
     </if>
-    
+
   </root>
 
   <!-- This block suppresses low-level logs from common 3rd-party libraries such that only ERROR-level log statements will 
