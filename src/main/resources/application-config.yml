@@ -10,7 +10,6 @@ spring:
     url: jdbc:mysql://localhost:3306/grimoire?useLegacyDatetimeCode=false&serverTimezone=America/Denver
     username: grimoire
     password: grimoire1234
-    initialization-mode: always
 keycloak:
   enabled: true
   auth-server-url: https://kc.lib.byu.edu/auth
