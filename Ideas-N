@@ -1,0 +1,48 @@
+Nathan Craven
+I think this will be a very useful project. As a player of D&D it can be difficult to choose spells when my wizard levels up. It is also tricky to know what the effects and damage of spells do when my friend is busy with my physical copy of the book.
+
+Things I think will be useful:
+- A way to crowdsource the input of the different spells.
+- Filter/Search options to navigate what spells are available to you
+- Designation of what books the spells come from
+- A place to create and store home-brew spells
+- Your own personal spellbook. A place to store what spells your character has and has prepared.
+
+Legally if we wanted to make this publically available we would need to talk with the actual publishers of the books to get the rights to do this. We might need to have users pay to have access to certain books’ spells so we can pay the owners (and maybe ourselves…).
+
+Here are some ideas of what the tables might look like:
+User TABLE
+------------
+user_id (pk)
+username
+password
+email
+The table that holds the user’s information. We will connect to the other tables using the unique user_id.
+
+Spells TABLE
+--------------
+spell_id (pk)
+name
+level
+class
+cast_time
+range
+components
+duration
+description
+damage
+higher_levels
+book
+The table that houses the information on the spells. This is what we’ll want to crowd source to populate. We’ll have to look at this table a bit more because I bet I missed some things.
+
+userSpellbooks TABLE
+--------------
+book_id (pk)
+user_id (fk)
+This will have a way to connect a user to a list of spells. Doing it this way will allow users to have multiple spellbooks.
+
+spellbook TABLE
+------------------
+book_id (fk)
+spell_id (fk)
+This will have a way to connect a book to a list of spells. This way we could add and remove spells from spellbooks that the user has.
