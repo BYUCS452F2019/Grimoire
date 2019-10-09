@@ -49,3 +49,23 @@ docker run -ti --rm --name grimoire -v $(pwd):/usr/src/grimoire -w /usr/src/grim
 ```
 
 To skip building and packaging the frontend, add `-Dfrontend.install.phase=none -Dfrontend.package.phase=none` to the end of the second command.
+
+## Using Docker Compose to run locally
+
+We can use Docker to run all the required pieces without needing to download them individually.
+
+By running `docker-compose up` in the root directory Docker will spin up the server, a database, a web based DBMS, and the web code running in development mode with watching enabled.
+
+In order for the frontend code to work you'll need to run `npm install` in the `src/main/angular` folder.
+
+The frontend code is proxying all requests starting with `/api` to the local backend server.
+
+### Using the DBMS
+
+Navigate to `localhost:8081` and log into the database with the following credentials
+
+- System: `MySQL`
+- Server: `db`
+- Username: `grimoire`
+- Password: `grimoire1234`
+- database: `grimoire`
