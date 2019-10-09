@@ -1,3 +1,31 @@
-p {
-  background-color: aliceblue;
+.page-title {
+    text-align: center;
+}
+
+.home-grid {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
+    justify-items: center;
+    padding: 0 10px;
+}
+
+.book {
+    background-color: #501B00;
+    color: #EFC501;
+    padding-top: 100%;
+    width: 100%;
+    position: relative;
+    border-top-left-radius: 1vw;
+    border-bottom-left-radius: 1vw;
+    box-shadow: 5px 5px 8px -3px, 7px 8px 0px 0px #501B00;
+    cursor: pointer;
+}
+
+.title {
+    position: absolute;
+    top: 25%;
+    text-align: center;
+    width: 100%;
+    font-size: 5vw;
 }
