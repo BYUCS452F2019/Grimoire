@@ -7,8 +7,8 @@
 # * deploying master to staging
 # * deploying the newest tag on master to production
 #
-# In order to deploy, the gitlab kubernetes integration must be active for your project, whether it's active at the 
-# group level or the project level. 
+# In order to deploy, the gitlab kubernetes integration must be active for your project, whether it's active at the
+# group level or the project level.
 #
 # This pipeline expects the following environment variables:
 #   REVIEW_DOMAIN* - The base domain name for determing review app environment url and kubernetes routing.
@@ -26,7 +26,7 @@
 #
 # CI_DEPLOY_USER and CI_DEPLOY_PASSWORD can be set by creating a project deploy token named `gitlab-deploy-token`.
 #
-# This pipeline uses the helm chart located at https://gitlab.com/byuhbll/apps/helm-charts/tree/master/charts/spring-app 
+# This pipeline uses the helm chart located at https://gitlab.com/byuhbll/apps/helm-charts/tree/master/charts/spring-app
 # to deploy applications. This can be changed if needed.
 
 variables:
@@ -38,7 +38,6 @@ variables:
   PRODUCTION_REPLICAS: 2
   REVIEW_DOMAIN: grimoire.benwelker.com
   STAGING_DOMAIN: grimoire.benwelker.com
-  
 
 cache:
   paths:
@@ -53,7 +52,7 @@ stages:
 package:
   image: registry.gitlab.com/byuhbll/apps/gitlab-ci-maven:3-jdk11
   stage: maven
-  script: 
+  script:
     - mvn $MAVEN_OPTS package
   artifacts:
     paths:
@@ -70,13 +69,13 @@ verify:
     - awk -F"," -f /jacoco.awk target/site/jacoco/jacoco.csv || true
   artifacts:
     reports:
-      junit: 
+      junit:
         - target/surefire-reports/TEST-*.xml
         - target/failsafe-reports/TEST-*.xml
   coverage: '/^code coverage:\s*(\d+\.\d+)\s*%/'
 
 # This job runs checkstyle. It is allowed to fail.
-checkstyle:
+.checkstyle:
   image: registry.gitlab.com/byuhbll/apps/gitlab-ci-maven:3-jdk11
   stage: maven
   script:
@@ -93,7 +92,7 @@ prerelease:
     - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
     - docker build --pull -t "$CI_REGISTRY_IMAGE/prerelease:$CI_COMMIT_REF_SLUG" .
     - docker push "$CI_REGISTRY_IMAGE/prerelease:$CI_COMMIT_REF_SLUG"
-  only: 
+  only:
     - branches
 
 # This job produces a release docker image.
@@ -107,7 +106,7 @@ release:
     - docker build --pull -t "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME" .
     - docker push "$CI_REGISTRY_IMAGE:$CI_COMMIT_REF_NAME"
     - publish_latest
-  only: 
+  only:
     - tags
 
 # This is the base for all deployment jobs.
