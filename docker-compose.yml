@@ -1,0 +1,45 @@
+version: '3'
+
+services:
+  web:
+    image: node:12
+    command: npm run start:docker -- --host 0.0.0.0
+    volumes:
+      - ./src/main/angular:/app
+    working_dir: /app
+    depends_on:
+      - server
+    ports:
+      - 4200:4200
+    links:
+      - server:api
+  mariadb:
+    image: mariadb
+    restart: always
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+      MYSQL_DATABASE: grimoire
+      MYSQL_USER: grimoire
+      MYSQL_PASSWORD: grimoire1234
+  server:
+    image: registry.gitlab.com/byuhbll/apps/gitlab-ci-maven
+    command: mvn package spring-boot:run -Dfrontend.install.phase=none -Dfrontend.package.phase=none
+    volumes:
+      - ./:/usr/src/grimoire
+      - maven-repo:/root/.m2
+    links:
+      - mariadb
+    working_dir: /usr/src/grimoire
+    ports:
+      - 8080:8080
+  adminer:
+    image: adminer
+    depends_on:
+      - mariadb
+    ports:
+      - 8081:8080
+    restart: always
+    links:
+      - mariadb:db
+volumes:
+  maven-repo:
