@@ -52,7 +52,7 @@
     grid-gap: 10px;
     grid-template-columns: repeat(auto-fit, minmax(250px,1fr));
     justify-items: center;
-    padding: 0 10px;
+    padding: 0 10px 10px;
 }
 
 .book {
@@ -72,5 +72,22 @@
     top: 25%;
     text-align: center;
     width: 100%;
-    font-size: 5vw;
+    font-size: 5vmax;
+    text-shadow: -2px -2px 3px black;
+}
+
+.new-spell-container {
+    position: relative;
+    cursor: pointer;
+    img {
+        width: 100%;
+    }
+    .new-spell-title {
+        position: absolute;
+        top: 25%;
+        font-size: 5vmax;
+        right: 0;
+        color: #EFC501;
+        text-shadow: -2px -2px 3px black;
+    }
 }
