@@ -1,16 +1,19 @@
 <h1 class="page-title">Welcome {{userName}} to your Library!</h1>
 
 <div class="home-grid">
-    <img alt="ink well">
-    <div class="book">
+    <div class="new-spell-container" (click)="createSpell()">
+        <img src="../assets/quill-ink.png" alt="ink well">
+        <span class="new-spell-title">Create Spell</span>
+    </div>
+    <div class="book" (click)="search('all')">
         <span class="title">All Spells</span>
     </div>
 
-    <div class="book">
+    <div class="book" (click)="newBook()">
         <span class="title">New Book</span>
     </div>
     
-    <!-- <div *ngFor="let book of books" class="book">
-        <span class="title">{{book.title}}</span>
-    </div> -->
+    <div *ngFor="let book of books" class="book" (click)="search(book.bookId)">
+        <span class="title">{{book.name}}</span>
+    </div>
 </div>
