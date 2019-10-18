@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UserApiService } from 'src/app/services';
 
 @Component({
     selector: 'app-home',
@@ -6,14 +7,21 @@ import { Component, OnInit } from '@angular/core';
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-    books = [];
+    user;
 
-    constructor() { }
+    constructor(private userApi: UserApiService) {
+        this.userApi.getUser().subscribe((user) => {
+            console.log(user); // TODO remove this console.log.
+            this.user = user;
+        });
+    }
 
     ngOnInit() {
     }
 
-    createSpell() {}
+    createSpell() {
+        // TODO route to create spell page when it exists
+    }
 
     search(bookId) {
     }

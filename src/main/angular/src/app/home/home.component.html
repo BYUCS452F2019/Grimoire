@@ -13,7 +13,7 @@
         <span class="title">New Book</span>
     </div>
     
-    <div *ngFor="let book of books" class="book" (click)="search(book.bookId)">
+    <div *ngFor="let book of user?.books" class="book" (click)="search(book.bookId)">
         <span class="title">{{book.name}}</span>
     </div>
 </div>
