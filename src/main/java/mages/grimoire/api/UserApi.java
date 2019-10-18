@@ -8,6 +8,7 @@ import org.keycloak.KeycloakPrincipal;
 import org.keycloak.adapters.RefreshableKeycloakSecurityContext;
 import org.keycloak.representations.IDToken;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -20,6 +21,7 @@ public class UserApi {
 
   private UserDao users;
 
+  @CrossOrigin(origins = "*", allowCredentials = "true")
   @GetMapping
   public ResponseEntity<User> getUser(Principal principal) {
     KeycloakPrincipal<RefreshableKeycloakSecurityContext> kcp = (KeycloakPrincipal) principal;
