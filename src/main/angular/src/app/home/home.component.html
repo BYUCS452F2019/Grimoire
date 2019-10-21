@@ -1,1 +1,22 @@
-<p>home works!</p>
+<h1 class="page-title">Welcome {{user?.name}} to your Library!</h1>
+
+<div class="home-grid">
+    <div class="new-spell-container" (click)="createSpell()">
+        <img src="../assets/quill-ink.png" alt="ink well">
+        <span class="new-spell-title">Create Spell</span>
+    </div>
+    <div class="book" (click)="search('all')">
+        <span class="title">All Spells</span>
+    </div>
+
+    <div class="book" (click)="newBook()">
+        <span class="title">New Book</span>
+    </div>
+    
+    <div *ngFor="let book of user?.books" class="book" (click)="search(book.bookId)">
+        <span *ngIf="book.bookId" class="title">{{book.name}}</span>
+        <form *ngIf="!book.bookId">
+            <input placeholder="Book Title" [(ngModel)]="book.name" name="name" (blur)="saveBookName(book)" class="title" >
+        </form>
+    </div>
+</div>
