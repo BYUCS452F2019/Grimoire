@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-    user = {books: []};
+    user = {books: [], name: ''};
 
     constructor(private userApi: UserApiService, private bookApi: SpellBookApiService, private router: Router) {
         this.userApi.getUser().subscribe((user: any) => {
