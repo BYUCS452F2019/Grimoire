@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { UserApiService } from 'src/app/services';
+import { UserApiService, SpellBookApiService } from 'src/app/services';
 
 @Component({
     selector: 'app-home',
@@ -7,11 +7,10 @@ import { UserApiService } from 'src/app/services';
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-    user;
+    user = {books: []};
 
-    constructor(private userApi: UserApiService) {
-        this.userApi.getUser().subscribe((user) => {
-            console.log(user); // TODO remove this console.log.
+    constructor(private userApi: UserApiService, private bookApi: SpellBookApiService) {
+        this.userApi.getUser().subscribe((user: any) => {
             this.user = user;
         });
     }
@@ -24,8 +23,20 @@ export class HomeComponent implements OnInit {
     }
 
     search(bookId) {
+        if (!bookId) {
+            return
+        }
+        // TODO route to book search
     }
 
-    newBook(){}
+    newBook(){
+        this.user.books.push({name: ''});
+    }
+
+    saveBookName(book) {
+        this.bookApi.addSpellBook(book.name).subscribe((returnedBook: any) => {
+            book = returnedBook.bookId
+        });
+    }
 
 }

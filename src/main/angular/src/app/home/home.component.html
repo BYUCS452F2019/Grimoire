@@ -14,6 +14,9 @@
     </div>
     
     <div *ngFor="let book of user?.books" class="book" (click)="search(book.bookId)">
-        <span class="title">{{book.name}}</span>
+        <span *ngIf="book.bookId" class="title">{{book.name}}</span>
+        <form *ngIf="!book.bookId">
+            <input placeholder="Book Title" [(ngModel)]="book.name" name="name" (blur)="saveBookName(book)" class="title" >
+        </form>
     </div>
 </div>
