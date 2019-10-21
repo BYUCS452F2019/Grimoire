@@ -1,0 +1,68 @@
+<form (ngSubmit)="submit(newSpellForm.value)" [formGroup]="newSpellForm">
+  <mat-form-field class="name">
+    <input type="text" matInput placeholder="Spell Name">
+  </mat-form-field>
+  <mat-form-field class="level">
+    <input type="text" matInput placeholder="Level">
+  </mat-form-field>
+  <mat-form-field class="school">
+    <mat-label>School</mat-label>
+    <mat-select>
+      <mat-option *ngFor="let school of schoolOptions" [value]="school.value">{{school.label}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="casting-time">
+    <input type="text" matInput placeholder="Casting Time">
+  </mat-form-field>
+
+  <mat-checkbox class="ritual" color="primary">Ritual</mat-checkbox>
+
+  <div class="classes">
+    <h3 class="full-row">Class</h3>
+    <mat-checkbox color="primary" *ngFor="let class of classOptions">{{class}}</mat-checkbox>
+  </div>
+
+  <mat-form-field class="range">
+    <input type="text" matInput placeholder="Range">
+  </mat-form-field>
+  <mat-form-field class="target">
+    <input type="text" matInput placeholder="Target">
+  </mat-form-field>
+  <mat-form-field class="duration">
+    <input type="text" matInput placeholder="Duration">
+  </mat-form-field>
+  <mat-checkbox class="concentration" color="primary">Concentration</mat-checkbox>
+
+  <div class="components">
+    <h3 class="full-row">Components</h3>
+    <mat-checkbox color="primary">Verbal</mat-checkbox>
+    <mat-checkbox color="primary">Sommatic</mat-checkbox>
+    <mat-form-field class="full-row">
+      <mat-label>Material</mat-label>
+      <textarea matInput></textarea>
+    </mat-form-field>
+  </div>
+  <mat-form-field class="damage">
+    <input type="text" matInput placeholder="Damage">
+  </mat-form-field>
+  <mat-form-field class="damage-type">
+    <input type="text" matInput placeholder="Damage Type">
+  </mat-form-field>
+  <mat-form-field class="saving">
+    <input type="text" matInput placeholder="Saving Throw">
+  </mat-form-field>
+  <mat-form-field class="description">
+    <textarea type="text" matInput placeholder="Description"></textarea>
+  </mat-form-field>
+  <mat-form-field class="higher">
+    <textarea type="text" matInput placeholder="Higher Levels"></textarea>
+  </mat-form-field>
+  <mat-form-field class="source">
+    <input type="text" matInput placeholder="Source (Book)">
+  </mat-form-field>
+
+  <div class="buttons">
+    <button mat-button>Cancel</button>
+    <button mat-raised-button color="primary" type="submit">Save</button>
+  </div>
+</form>
