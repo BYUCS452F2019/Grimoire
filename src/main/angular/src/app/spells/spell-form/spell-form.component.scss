@@ -1,0 +1,90 @@
+:host {
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+}
+
+form {
+  padding: 20px;
+  display: grid;
+  column-gap: 10px;
+  grid-template-areas:
+    'name name name class class class'
+    'level school school class class class'
+    'casting casting ritual class class class'
+    'range target target component component component'
+    'duration duration concentration component component component'
+    'damage damage d-type d-type saving saving'
+    'description description description description description description'
+    'description description description description description description'
+    'higher higher higher higher higher higher'
+    'higher higher higher higher higher higher'
+    'source source source buttons buttons buttons';
+}
+
+.name {
+  grid-area: name;
+}
+.level {
+  grid-area: level;
+}
+.school {
+  grid-area: school;
+}
+.casting-time {
+  grid-area: casting;
+}
+.ritual {
+  grid-area: ritual;
+  align-self: center;
+}
+.range {
+  grid-area: range;
+}
+.target {
+  grid-area: target;
+}
+.duration {
+  grid-area: duration;
+}
+.concentration {
+  grid-area: concentration;
+  align-self: center;
+}
+.damage {
+  grid-area: damage;
+}
+.damage-type {
+  grid-area: d-type;
+}
+.saving {
+  grid-area: saving;
+}
+.description {
+  grid-area: description;
+}
+.higher {
+  grid-area: higher;
+}
+.source {
+  grid-area: source;
+}
+.buttons {
+  grid-area: buttons;
+  justify-self: center;
+}
+.components {
+  grid-area: component;
+  display: grid;
+  justify-items: center;
+  grid-template-columns: 1fr 1fr;
+}
+.full-row {
+  grid-column: 1/-1;
+}
+.classes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  grid-area: class;
+}
