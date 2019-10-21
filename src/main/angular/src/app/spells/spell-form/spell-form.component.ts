@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { School, ClassType } from '../../shared/interfaces/spell';
+import { School, ClassType } from 'src/app/shared/interfaces/spell';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-spell-form',
@@ -11,7 +12,8 @@ export class SpellFormComponent implements OnInit {
   newSpellForm: FormGroup;
   schoolOptions;
   classOptions;
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private router: Router) {
+    //   TODO add validation to the form
     this.newSpellForm = this.fb.group({});
 
     this.schoolOptions = Object.keys(School).map(a => ({
@@ -26,6 +28,13 @@ export class SpellFormComponent implements OnInit {
   ngOnInit() { }
 
   submit(form) {
-    console.log(form);
+      console.log(form);
+      if (form.valid) {
+        // send new spell to the endpoint
+      }
+  }
+
+  cancel() {
+    this.router.navigate([''])
   }
 }

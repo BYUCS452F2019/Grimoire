@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserApiService, SpellBookApiService } from 'src/app/services';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-home',
@@ -9,7 +10,7 @@ import { UserApiService, SpellBookApiService } from 'src/app/services';
 export class HomeComponent implements OnInit {
     user = {books: []};
 
-    constructor(private userApi: UserApiService, private bookApi: SpellBookApiService) {
+    constructor(private userApi: UserApiService, private bookApi: SpellBookApiService, private router: Router) {
         this.userApi.getUser().subscribe((user: any) => {
             this.user = user;
         });
@@ -19,7 +20,7 @@ export class HomeComponent implements OnInit {
     }
 
     createSpell() {
-        // TODO route to create spell page when it exists
+        this.router.navigate(['spells/new']);
     }
 
     search(bookId) {
@@ -34,9 +35,11 @@ export class HomeComponent implements OnInit {
     }
 
     saveBookName(book) {
-        this.bookApi.addSpellBook(book.name).subscribe((returnedBook: any) => {
-            book = returnedBook.bookId
-        });
+        if (book.name) {
+            this.bookApi.addSpellBook(book.name).subscribe((returnedBook: any) => {
+                book = returnedBook.bookId
+            });
+        }
     }
 
 }
