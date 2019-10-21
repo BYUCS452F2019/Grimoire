@@ -24,12 +24,14 @@ public class CorsFilter implements Filter {
 
     String origin = httpRequest.getHeader("origin");
 
-    if (origin != null) {
-      httpResponse.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, origin);
-      httpResponse.setHeader(
-          HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, "OPTIONS, GET, POST, PUT, DELETE");
-      httpResponse.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
+    if (origin == null || origin.isBlank()) {
+      origin = "*";
     }
+
+    httpResponse.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_ORIGIN, origin);
+    httpResponse.setHeader(
+        HttpHeaders.ACCESS_CONTROL_ALLOW_METHODS, "OPTIONS, GET, POST, PUT, DELETE");
+    httpResponse.setHeader(HttpHeaders.ACCESS_CONTROL_ALLOW_CREDENTIALS, "true");
 
     chain.doFilter(request, response);
   }
