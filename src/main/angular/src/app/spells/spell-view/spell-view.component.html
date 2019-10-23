@@ -1,0 +1,27 @@
+<div *mobxAutorun>
+    <div *ngIf="spellStore.currentSpell as spell">
+        <!-- TODO -->
+        <!-- add: classType -->
+        <!-- add: concentration -->
+        <!-- add: ritual -->
+        <!-- add: Sommatic, Verbal Material -->
+        <h1>{{spell.spellName}}</h1>
+        <span>level {{spell.level}}</span>
+        <span>{{spell.school}}</span>
+        <strong>Casting Time:</strong>
+        <span>{{spell.castingTime}}</span>
+        <strong>Range:</strong>
+        <span>{{spell.range}} ft</span>
+        <strong>Components:</strong>
+        <span>{{spell.components}}</span>
+        <strong>Duration:</strong>
+        <span>{{spell.duration}}</span>
+        <strong>Description:</strong>
+        <p>{{spell.description}}</p>
+        <div *ngIf="spell.higherLevels">
+            <strong>Higher Levels:</strong>
+            <p>{{spell.higherLevels}}</p>
+        </div>
+    </div>
+    <div *ngIf="!spellStore.currentSpell">We do not know that spell, how did you even get here?</div>
+</div>
