@@ -1,0 +1,29 @@
+.page {
+    padding: 10px 20px 20px 20px;
+}
+.spell {
+    display: grid;
+    white-space: nowrap;
+    grid-gap: 10px;
+
+    .name {
+        font-weight: 800;
+        font-size: 25px;
+    }
+
+    .components {
+        display: grid;
+        grid-template-columns: repeat(4, min-content);
+        grid-gap: 10px;
+    }
+
+    .attribute-container {
+        display: grid;
+        grid-template-columns: min-content min-content;
+        grid-gap: 10px;
+
+        .label {
+
+        }
+    }
+}

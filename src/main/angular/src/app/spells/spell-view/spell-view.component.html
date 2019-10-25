@@ -1,21 +1,36 @@
-<div *mobxAutorun>
-    <div *ngIf="spellStore.currentSpell as spell">
-        <!-- TODO -->
-        <!-- add: classType -->
-        <!-- add: concentration -->
-        <!-- add: ritual -->
-        <!-- add: Sommatic, Verbal Material -->
-        <h1>{{spell.spellName}}</h1>
-        <span>level {{spell.level}}</span>
-        <span>{{spell.school}}</span>
-        <strong>Casting Time:</strong>
-        <span>{{spell.castingTime}}</span>
-        <strong>Range:</strong>
-        <span>{{spell.range}} ft</span>
-        <strong>Components:</strong>
-        <span>{{spell.components}}</span>
-        <strong>Duration:</strong>
-        <span>{{spell.duration}}</span>
+<div class="page" *mobxAutorun>
+    <div class="spell" *ngIf="spellStore.currentSpell as spell">
+        <span class="name">{{spell.spellName}}</span>
+        <div class="attribute-container">
+            <span class="level">level {{spell.level}}</span>
+            <span class="school">{{spell.school}}</span>
+        </div>
+        <div class="components">
+            <strong>Components:</strong>
+            <span *ngIf="spell.sommatic">S</span>
+            <span *ngIf="spell.verbal">V</span>
+            <span *ngIf="spell.material">M ({{spell.material}})</span>
+        </div>
+        <div class="attribute-container">
+            <strong class="label">Casting Time:</strong>
+            <span>
+                {{spell.castingTime}}
+                <span *ngIf="spell.concentration">concentration</span>
+                <span *ngIf="spell.ritual">R</span>
+            </span>
+        </div>
+        <div class="attribute-container">
+            <strong class="label">Range:</strong>
+            <span>{{spell.range}} ft</span>
+        </div>
+        <div class="attribute-container">
+            <strong class="label">Components:</strong>
+            <span>{{spell.components}}</span>
+        </div>
+        <div class="attribute-container">
+            <strong class="label">Duration:</strong>
+            <span>{{spell.duration}}</span>
+        </div>
         <strong>Description:</strong>
         <p>{{spell.description}}</p>
         <div *ngIf="spell.higherLevels">
