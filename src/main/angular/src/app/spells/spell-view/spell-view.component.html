@@ -2,7 +2,7 @@
     <div class="spell" *ngIf="spellStore.currentSpell as spell">
         <span class="name">{{spell.spellName}}</span>
         <div class="attribute-container">
-            <span class="level">level {{spell.level}}</span>
+            <span class="level">{{spell.level? 'level ' + spell.level : 'Cantrip'}}</span>
             <span class="school">{{spell.school}}</span>
         </div>
         <div class="components">
@@ -24,19 +24,17 @@
             <span>{{spell.range}} ft</span>
         </div>
         <div class="attribute-container">
-            <strong class="label">Components:</strong>
-            <span>{{spell.components}}</span>
-        </div>
-        <div class="attribute-container">
             <strong class="label">Duration:</strong>
             <span>{{spell.duration}}</span>
         </div>
-        <strong>Description:</strong>
-        <p>{{spell.description}}</p>
+        <div *ngIf="spell.description">
+            <strong>Description:</strong>
+            <p>{{spell.description}}</p>
+        </div>
         <div *ngIf="spell.higherLevels">
             <strong>Higher Levels:</strong>
             <p>{{spell.higherLevels}}</p>
         </div>
     </div>
-    <div *ngIf="!spellStore.currentSpell">We do not know that spell, how did you even get here?</div>
+    <div *ngIf="!spellStore.currentSpell">Our mages are scribing as fast as they can, but they haven't written this spell yet.</div>
 </div>
