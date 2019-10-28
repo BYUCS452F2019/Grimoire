@@ -1,7 +1,8 @@
 package mages.grimoire.api;
 
+import java.util.stream.Stream;
 import lombok.AllArgsConstructor;
-import mages.grimoire.dao.spring.SpellRepository;
+import mages.grimoire.dao.SpellDao;
 import mages.grimoire.model.Spell;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,16 +17,16 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class SpellApi {
 
-  private final SpellRepository spells;
+  private final SpellDao spells;
 
   @GetMapping
-  public ResponseEntity<Iterable<Spell>> getAllSpells() {
-    return ResponseEntity.ok(spells.findAll());
+  public ResponseEntity<Stream<Spell>> getAllSpells() {
+    return ResponseEntity.ok(spells.getAllSpells());
   }
 
   @PostMapping
   public ResponseEntity<Spell> addSpell(@RequestBody Spell spell) {
-    spells.save(spell);
+    spells.addSpell(spell);
     return ResponseEntity.ok(spell);
   }
 }
