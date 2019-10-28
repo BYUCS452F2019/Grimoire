@@ -1,8 +1,10 @@
 package mages.grimoire.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.util.List;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 
 /** Spell */
 @Data
@@ -29,7 +31,7 @@ public class Spell {
   private String higherLevels;
   private String damage;
   private DamageType damageType;
-  private ClassType classType;
+  @Transient private List<ClassType> classType;
   private String book;
 
   public static enum School {
@@ -67,16 +69,5 @@ public class Spell {
     Radiant,
     Slashing,
     Thunder
-  }
-
-  public static enum ClassType {
-    Bard,
-    Cleric,
-    Druid,
-    Paladin,
-    Ranger,
-    Sorcerer,
-    Warlock,
-    Wizard
   }
 }

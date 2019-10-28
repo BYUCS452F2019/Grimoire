@@ -5,7 +5,6 @@ import java.util.Optional;
 import lombok.AllArgsConstructor;
 import mages.grimoire.dao.spring.SpellBookRepository;
 import mages.grimoire.dao.spring.SpellBookSpellRepository;
-import mages.grimoire.dao.spring.SpellRepository;
 import mages.grimoire.dao.spring.UserSpellBookRepository;
 import mages.grimoire.model.DatabaseSpellBookSpell;
 import mages.grimoire.model.SpellBook;
@@ -18,7 +17,7 @@ public class SpellBookDao {
 
   private final SpellBookSpellRepository spellBookSpells;
   private final SpellBookRepository spellBooks;
-  private final SpellRepository spells;
+  private final SpellDao spells;
   private final UserSpellBookRepository userSpellBooks;
 
   public Optional<SpellBook> getSpellBook(int bookId) {
@@ -30,7 +29,7 @@ public class SpellBookDao {
 
     List<DatabaseSpellBookSpell> databaseSpells = spellBookSpells.findByBookId(bookId);
     for (DatabaseSpellBookSpell databaseSpell : databaseSpells) {
-      spells.findById(databaseSpell.getSpellId()).ifPresent(spell -> book.getSpells().add(spell));
+      spells.getSpell(databaseSpell.getSpellId()).ifPresent(spell -> book.getSpells().add(spell));
     }
 
     return Optional.of(book);

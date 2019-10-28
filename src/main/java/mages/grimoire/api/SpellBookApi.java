@@ -4,7 +4,7 @@ import java.security.Principal;
 import java.util.Optional;
 import lombok.AllArgsConstructor;
 import mages.grimoire.dao.SpellBookDao;
-import mages.grimoire.dao.spring.SpellRepository;
+import mages.grimoire.dao.SpellDao;
 import mages.grimoire.model.SpellBook;
 import org.keycloak.KeycloakPrincipal;
 import org.springframework.http.ResponseEntity;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SpellBookApi {
 
   private final SpellBookDao spellBooks;
-  private final SpellRepository spells;
+  private final SpellDao spells;
 
   @GetMapping(path = "/{id}")
   public ResponseEntity<SpellBook> getSpellBook(int id) {
@@ -57,7 +57,7 @@ public class SpellBookApi {
       return ResponseEntity.notFound().build();
     }
 
-    var spellOpt = spells.findById(spellId);
+    var spellOpt = spells.getSpell(spellId);
     if (spellOpt.isEmpty()) {
       return ResponseEntity.badRequest().build();
     }
