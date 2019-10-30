@@ -27,7 +27,7 @@ export class HomeComponent implements OnInit {
         if (!bookId) {
             return
         }
-        // TODO route to book search
+        this.router.navigate(['spells/book', bookId]);
     }
 
     newBook(){
