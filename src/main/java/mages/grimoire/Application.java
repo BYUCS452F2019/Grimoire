@@ -73,7 +73,7 @@ public class Application {
     Connection connection = datasource.getConnection();
     Statement statement = connection.createStatement();
     statement.execute(
-        "CREATE TABLE IF NOT EXISTS `grimoire`.`spell` ( `spell_id` INT NOT NULL AUTO_INCREMENT , `spell_name` VARCHAR(255) NOT NULL , `level` INT NOT NULL , `ritual` BOOLEAN NOT NULL , `casting_time` VARCHAR(255) NOT NULL , `range_value` INT NULL , `verbal` BOOLEAN NOT NULL , `somatic` BOOLEAN NOT NULL , `material` VARCHAR(255) NOT NULL , `school` VARCHAR(255) NOT NULL , `duration` INT NOT NULL , `concentration` BOOLEAN NOT NULL , `target` VARCHAR(255) NOT NULL , `saving_throw` TEXT NULL , `description` TEXT NOT NULL , `higher_levels` TEXT NULL , `damage` TEXT NULL , `damage_type` VARCHAR(255) NOT NULL , `book` VARCHAR(255) NOT NULL , UNIQUE `spell_id` (`spell_id`)) ENGINE = InnoDB;");
+        "CREATE TABLE IF NOT EXISTS `grimoire`.`spell` ( `spell_id` INT NOT NULL AUTO_INCREMENT , `spell_name` VARCHAR(255) NULL , `level` INT NULL , `ritual` BOOLEAN NULL , `casting_time` VARCHAR(255) NULL , `range_value` INT NULL , `verbal` BOOLEAN NULL , `somatic` BOOLEAN NULL , `material` VARCHAR(255) NULL , `school` VARCHAR(255) NULL , `duration` VARCHAR(255) NULL , `concentration` BOOLEAN NULL , `target` VARCHAR(255) NULL , `saving_throw` TEXT NULL , `description` TEXT NULL , `higher_levels` TEXT NULL , `damage` TEXT NULL , `damage_type` VARCHAR(255) NULL , `book` VARCHAR(255) NULL , UNIQUE `spell_id` (`spell_id`)) ENGINE = InnoDB;");
     statement.execute(
         "CREATE TABLE IF NOT EXISTS `grimoire`.`user` ( `user_id` VARCHAR(255) NOT NULL, `name` VARCHAR(255) NOT NULL, UNIQUE `user_id` (`user_id`)) ENGINE = InnoDB;");
     statement.execute(
