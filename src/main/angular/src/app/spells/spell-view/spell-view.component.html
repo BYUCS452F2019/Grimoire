@@ -1,0 +1,40 @@
+<div class="page" *mobxAutorun>
+    <div class="spell" *ngIf="spellStore.currentSpell as spell">
+        <span class="name">{{spell.spellName}}</span>
+        <div class="attribute-container">
+            <span class="level">{{spell.level? 'level ' + spell.level : 'Cantrip'}}</span>
+            <span class="school">{{spell.school}}</span>
+        </div>
+        <div class="components">
+            <strong>Components:</strong>
+            <span *ngIf="spell.sommatic">S</span>
+            <span *ngIf="spell.verbal">V</span>
+            <span *ngIf="spell.material">M ({{spell.material}})</span>
+        </div>
+        <div class="attribute-container">
+            <strong class="label">Casting Time:</strong>
+            <span>
+                {{spell.castingTime}}
+                <span *ngIf="spell.concentration">concentration</span>
+                <span *ngIf="spell.ritual">R</span>
+            </span>
+        </div>
+        <div class="attribute-container">
+            <strong class="label">Range:</strong>
+            <span>{{spell.range}} ft</span>
+        </div>
+        <div class="attribute-container">
+            <strong class="label">Duration:</strong>
+            <span>{{spell.duration}}</span>
+        </div>
+        <div *ngIf="spell.description">
+            <strong>Description:</strong>
+            <p>{{spell.description}}</p>
+        </div>
+        <div *ngIf="spell.higherLevels">
+            <strong>Higher Levels:</strong>
+            <p>{{spell.higherLevels}}</p>
+        </div>
+    </div>
+    <div *ngIf="!spellStore.currentSpell">Our mages are scribing as fast as they can, but they haven't written this spell yet.</div>
+</div>

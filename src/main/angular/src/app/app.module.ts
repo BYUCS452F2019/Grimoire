@@ -8,6 +8,7 @@ import { MaterialModule } from './material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { UserApiService } from './services'
 import { InterceptorService } from './services/interceptor.service';
+import { MobxAngularModule } from 'mobx-angular';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { InterceptorService } from './services/interceptor.service';
     MaterialModule,
     AppRoutingModule,
     HttpClientModule,
+    MobxAngularModule,
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
