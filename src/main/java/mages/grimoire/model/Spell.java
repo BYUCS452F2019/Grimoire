@@ -23,7 +23,7 @@ public class Spell {
   private boolean somatic;
   private String material;
   private School school;
-  private int duration;
+  private String duration;
   private boolean concentration;
   private Target target;
   private String saving_throw;
