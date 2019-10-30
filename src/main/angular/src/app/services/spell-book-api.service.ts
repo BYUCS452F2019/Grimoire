@@ -16,8 +16,8 @@ export class SpellBookApiService {
       return this.httpClient.post(`https://grimoire.benwelker.com/api/spellbooks/${bookId}?spellId=${spellId}`, null);
   }
 
-  public getSpellBook(bookId) {
-      return this.httpClient.get(`https://grimoire.benwelker.com/api/spellbooks/${bookId}`);
+  public getSpellBook(id) {
+      return this.httpClient.get(`https://grimoire.benwelker.com/api/spellbooks/${id}`);
   }
 
 }
