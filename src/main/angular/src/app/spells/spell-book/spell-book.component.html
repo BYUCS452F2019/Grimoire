@@ -5,17 +5,20 @@
             <input placeholder="name" type="text" [(ngModel)]="spellStore.filterName">
             <input placeholder="level" type="number" [(ngModel)]="spellStore.filterLevel">
             <select placeholder="class" [(ngModel)]="spellStore.filterClass">
-                <option *ngFor="let class of classOptions" value="class">{{class}}</option>
+                <option value="">All Classes</option>
+                <option *ngFor="let class of classOptions" [value]="class">{{class}}</option>
             </select>
             <select placeholder="school" [(ngModel)]="spellStore.filterSchool">
-                <option *ngFor="let school of schoolOptions" value="school">{{school}}</option>
+                    <option value="">All Schools</option>
+                    <option *ngFor="let school of schoolOptions" [value]="school">{{school}}</option>
             </select>
             <select placeholder="damage type" [(ngModel)]="spellStore.filterDamageType">
-                <option *ngFor="let type of damageTypeOptions" value="type">{{type}}</option>
+                    <option value="">All Damage Types</option>
+                    <option *ngFor="let type of damageTypeOptions" [value]="type">{{type}}</option>
             </select>
         </div>
         <div class="spells">
-            <div class="spell" *ngFor="let spell of book.spells" (click)="routeToSpell(spell.spellId)">
+            <div class="spell" *ngFor="let spell of spellStore.filteredSpells" (click)="routeToSpell(spell.spellId)">
                 <strong>{{spell.spellName}}</strong>
                 <span>Level: {{spell.level}}</span>
                 <span>{{spell.school}}</span>
@@ -23,4 +26,5 @@
         </div>
     </div>
     <div *ngIf="!spellStore.currentBook">Let's see if we can find the grimoire you seek</div>
+    <div *ngIf="spellStore.currentBook.name === 'All Spells' && !spellStore.currentBook.spells.length">Please navigate to the library and back to this page. If you go too quickly the invisible servants get lost before fetching the grimoire... Sorry for this inconvenience :/</div>
 </div>
