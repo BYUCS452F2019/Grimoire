@@ -47,7 +47,7 @@ export class SpellFormComponent implements OnInit {
   submit(form: { classType: any[] }) {
     form.classType = form.classType.map((classType, i) => classType && this.classOptions[i]).filter(a => !!a);
     console.log(JSON.stringify(form));
-    this.spellService.addSpell(form).subscribe(this.cancel);
+    this.spellService.addSpell(form).subscribe(() => this.cancel());
   }
 
   cancel() {
