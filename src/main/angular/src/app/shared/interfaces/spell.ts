@@ -25,49 +25,49 @@ export interface Spell {
 }
 
 export enum School {
-  Abjuration,
-  Conjuration,
-  Divination,
-  Enchantment,
-  Evocation,
-  Illusion,
-  Necromancy,
-  Transmutation
+  Abjuration = 'Abjuration',
+  Conjuration = 'Conjuration',
+  Divination = 'Divination',
+  Enchantment = 'Enchantment',
+  Evocation = 'Evocation',
+  Illusion = 'Illusion',
+  Necromancy = 'Necromancy',
+  Transmutation = 'Transmutation'
 }
 
 export enum Target {
-  Self,
-  Creature,
-  Cone,
-  Cube,
-  Cylinder,
-  Line,
-  Sphere
+  Self = 'Self',
+  Creature = 'Creature',
+  Cone = 'Cone',
+  Cube = 'Cube',
+  Cylinder = 'Cylinder',
+  Line = 'Line',
+  Sphere = 'Sphere'
 }
 
 export enum DamageType {
-  Acid,
-  Bludgeoning,
-  Cold,
-  Fire,
-  Force,
-  Lightning,
-  Necrotic,
-  Piercing,
-  Poison,
-  Psychic,
-  Radiant,
-  Slashing,
-  Thunder
+  Acid = 'Acid',
+  Bludgeoning = 'Bludgeoning',
+  Cold = 'Cold',
+  Fire = 'Fire',
+  Force = 'Force',
+  Lightning = 'Lightning',
+  Necrotic = 'Necrotic',
+  Piercing = 'Piercing',
+  Poison = 'Poison',
+  Psychic = 'Psychic',
+  Radiant = 'Radiant',
+  Slashing = 'Slashing',
+  Thunder = 'Thunder'
 }
 
 export enum ClassType {
-  Bard,
-  Cleric,
-  Druid,
-  Paladin,
-  Ranger,
-  Sorcerer,
-  Warlock,
-  Wizard
+  Bard = 'Bard',
+  Cleric = 'Cleric',
+  Druid = 'Druid',
+  Paladin = 'Paladin',
+  Ranger = 'Ranger',
+  Sorcerer = 'Sorcerer',
+  Warlock = 'Warlock',
+  Wizard = 'Wizard'
 }

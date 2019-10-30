@@ -1,68 +1,75 @@
 <form (ngSubmit)="submit(newSpellForm.value)" [formGroup]="newSpellForm">
   <mat-form-field class="name">
-    <input type="text" matInput placeholder="Spell Name">
+    <input type="text" matInput placeholder="Spell Name" formControlName="spellName">
   </mat-form-field>
   <mat-form-field class="level">
-    <input type="text" matInput placeholder="Level">
+    <input type="text" matInput placeholder="Level" formControlName="level">
   </mat-form-field>
   <mat-form-field class="school">
     <mat-label>School</mat-label>
-    <mat-select>
-      <mat-option *ngFor="let school of schoolOptions" [value]="school.value">{{school.label}}</mat-option>
+    <mat-select formControlName="school">
+      <mat-option *ngFor="let school of schoolOptions" [value]="school">{{school}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field class="casting-time">
-    <input type="text" matInput placeholder="Casting Time">
+    <input type="text" matInput placeholder="Casting Time" formControlName="castingTime">
   </mat-form-field>
 
-  <mat-checkbox class="ritual" color="primary">Ritual</mat-checkbox>
+  <mat-checkbox class="ritual" color="primary" formControlName="ritual">Ritual</mat-checkbox>
 
   <div class="classes">
     <h3 class="full-row">Class</h3>
-    <mat-checkbox color="primary" *ngFor="let class of classOptions">{{class}}</mat-checkbox>
+    <mat-checkbox color="primary" *ngFor="let class of newSpellForm.get('classType')['controls']; let i = index"
+      [formControl]="class">{{classOptions[i]}}</mat-checkbox>
   </div>
 
   <mat-form-field class="range">
-    <input type="text" matInput placeholder="Range">
+    <input type="text" matInput placeholder="Range" formControlName="rangeValue">
   </mat-form-field>
   <mat-form-field class="target">
-    <input type="text" matInput placeholder="Target">
+    <mat-label>Target</mat-label>
+    <mat-select formControlName="target">
+      <mat-option *ngFor="let target of targetOptions" [value]="target">{{target}}</mat-option>
+    </mat-select>
   </mat-form-field>
   <mat-form-field class="duration">
-    <input type="text" matInput placeholder="Duration">
+    <input type="text" matInput placeholder="Duration" formControlName="duration">
   </mat-form-field>
-  <mat-checkbox class="concentration" color="primary">Concentration</mat-checkbox>
+  <mat-checkbox class="concentration" color="primary" formControlName="concentration">Concentration</mat-checkbox>
 
   <div class="components">
     <h3 class="full-row">Components</h3>
-    <mat-checkbox color="primary">Verbal</mat-checkbox>
-    <mat-checkbox color="primary">Sommatic</mat-checkbox>
+    <mat-checkbox color="primary" formControlName="verbal">Verbal</mat-checkbox>
+    <mat-checkbox color="primary" formControlName="somatic">Sommatic</mat-checkbox>
     <mat-form-field class="full-row">
       <mat-label>Material</mat-label>
-      <textarea matInput></textarea>
+      <textarea matInput formControlName="material"></textarea>
     </mat-form-field>
   </div>
   <mat-form-field class="damage">
-    <input type="text" matInput placeholder="Damage">
+    <input type="text" matInput placeholder="Damage" formControlName="damage">
   </mat-form-field>
   <mat-form-field class="damage-type">
-    <input type="text" matInput placeholder="Damage Type">
+    <mat-label>Damage Type</mat-label>
+    <mat-select formControlName="damageType">
+      <mat-option *ngFor="let type of damageTypeOptions" [value]="type">{{type}}</mat-option>
+    </mat-select>
   </mat-form-field>
   <mat-form-field class="saving">
-    <input type="text" matInput placeholder="Saving Throw">
+    <input type="text" matInput placeholder="Saving Throw" formControlName="saving_throw">
   </mat-form-field>
   <mat-form-field class="description">
-    <textarea type="text" matInput placeholder="Description"></textarea>
+    <textarea type="text" matInput placeholder="Description" formControlName="description"></textarea>
   </mat-form-field>
   <mat-form-field class="higher">
-    <textarea type="text" matInput placeholder="Higher Levels"></textarea>
+    <textarea type="text" matInput placeholder="Higher Levels" formControlName="higherLevels"></textarea>
   </mat-form-field>
   <mat-form-field class="source">
-    <input type="text" matInput placeholder="Source (Book)">
+    <input type="text" matInput placeholder="Source (Book)" formControlName="book">
   </mat-form-field>
 
   <div class="buttons">
     <button mat-button (click)="cancel()">Cancel</button>
-    <button mat-raised-button color="primary" type="submit">Save</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!newSpellForm.valid">Save</button>
   </div>
 </form>

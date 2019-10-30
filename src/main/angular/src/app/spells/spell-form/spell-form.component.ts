@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { School, ClassType } from 'src/app/shared/interfaces/spell';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { School, ClassType, Target, DamageType, Spell } from 'src/app/shared/interfaces/spell';
 import { Router } from '@angular/router';
+import { of } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { SpellApiService } from 'src/app/services';
 
 @Component({
   selector: 'app-spell-form',
@@ -10,31 +13,44 @@ import { Router } from '@angular/router';
 })
 export class SpellFormComponent implements OnInit {
   newSpellForm: FormGroup;
-  schoolOptions;
-  classOptions;
-  constructor(private fb: FormBuilder, private router: Router) {
+  schoolOptions = Object.keys(School).sort();
+  classOptions = Object.keys(ClassType).sort();
+  targetOptions = Object.keys(Target).sort();
+  damageTypeOptions = Object.keys(DamageType).sort();
+  constructor(private fb: FormBuilder, private router: Router, private spellService: SpellApiService) {
     //   TODO add validation to the form
-    this.newSpellForm = this.fb.group({});
-
-    this.schoolOptions = Object.keys(School).map(a => ({
-      label: a,
-      value: School[a]
-    }));
-    this.classOptions = Object.keys(ClassType).filter(
-      k => typeof ClassType[k as any] === 'number'
-    );
+    this.newSpellForm = fb.group({
+      spellName: ['', Validators.required],
+      level: ['', Validators.required],
+      ritual: [false, Validators.required],
+      castingTime: ['', Validators.required],
+      rangeValue: ['', Validators.required],
+      verbal: [false, Validators.required],
+      somatic: [false, Validators.required],
+      material: [''],
+      school: ['', Validators.required],
+      duration: ['', Validators.required],
+      concentration: [false, Validators.required],
+      target: [''],
+      saving_throw: [''],
+      description: ['', Validators.required],
+      higherLevels: [''],
+      damage: [''],
+      damageType: [''],
+      classType: fb.array(this.classOptions.map(() => fb.control(false)), Validators.required),
+      book: ['', Validators.required],
+    });
   }
 
   ngOnInit() { }
 
-  submit(form) {
-      console.log(form);
-      if (form.valid) {
-        // send new spell to the endpoint
-      }
+  submit(form: { classType: any[] }) {
+    form.classType = form.classType.map((classType, i) => classType && this.classOptions[i]).filter(a => !!a);
+    console.log(JSON.stringify(form));
+    this.spellService.addSpell(form).subscribe(this.cancel);
   }
 
   cancel() {
-    this.router.navigate([''])
+    this.router.navigate(['']);
   }
 }
