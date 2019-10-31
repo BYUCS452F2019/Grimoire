@@ -22,15 +22,15 @@ public class Spell {
   private boolean verbal;
   private boolean somatic;
   private String material;
-  private School school;
+  private String school;
   private String duration;
   private boolean concentration;
-  private Target target;
+  private String target;
   private String saving_throw;
   private String description;
   private String higherLevels;
   private String damage;
-  private DamageType damageType;
+  private String damageType;
   @Transient private List<ClassType> classType;
   private String book;
 
@@ -42,7 +42,8 @@ public class Spell {
     Evocation,
     Illusion,
     Necromancy,
-    Transmutation
+    Transmutation;
+
   }
 
   public static enum Target {
