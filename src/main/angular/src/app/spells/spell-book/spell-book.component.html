@@ -22,7 +22,7 @@
         <strong>{{spell.spellName}}</strong>
         <span>Level: {{spell.level}}</span>
         <span>{{spell.school}}</span>
-        <button mat-raised-button (click)="removeFromBook($event, spell)">remove</button>
+        <button *ngIf="spellStore.currentBook.bookId!=='all'" mat-raised-button (click)="removeFromBook($event, spell)">remove</button>
       </div>
     </div>
   </div>
