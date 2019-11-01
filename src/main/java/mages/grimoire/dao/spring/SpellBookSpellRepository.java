@@ -20,4 +20,8 @@ public interface SpellBookSpellRepository extends Repository<DatabaseSpellBookSp
   @Modifying
   @Query("delete from spell_book_spell where book_id = :bookId and spell_id = :spellId")
   void removeSpellFromBook(@Param("bookId") int bookId, @Param("spellId") int spellId);
+
+  @Modifying
+  @Query("delete from spell_book_spell where book_id = :bookId")
+  void deleteBook(@Param("bookId") int bookId);
 }

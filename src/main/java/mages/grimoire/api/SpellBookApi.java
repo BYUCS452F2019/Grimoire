@@ -8,6 +8,7 @@ import mages.grimoire.dao.SpellDao;
 import mages.grimoire.model.SpellBook;
 import org.keycloak.KeycloakPrincipal;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -65,5 +66,11 @@ public class SpellBookApi {
     spellBooks.addSpellToBook(bookId, spellId);
 
     return ResponseEntity.ok(spellBooks.getSpellBook(bookId).get());
+  }
+
+  @DeleteMapping("/{bookId}")
+  public ResponseEntity<SpellBook> deleteSpellBook(@PathVariable("bookId") int bookId) {
+    spellBooks.deleteSpellBook(bookId);
+    return ResponseEntity.ok().build();
   }
 }
