@@ -6,14 +6,15 @@
         <span class="new-spell-title">Create Spell</span>
     </div>
     <div class="book" (click)="search('all')">
-        <span class="title">All Spells</span>
+        <span class="title silver">All Spells</span>
     </div>
 
     <div class="book" (click)="newBook()">
-        <span class="title">New Book</span>
+        <span class="title silver">New Book</span>
     </div>
     
     <div *ngFor="let book of user?.books" class="book" (click)="search(book.bookId)">
+        <strong class="delete-icon" (click)="$event.stopPropagation(); deleteBook(book.bookId)">X</strong>
         <span *ngIf="book.bookId" class="title">{{book.name}}</span>
         <form *ngIf="!book.bookId">
             <input placeholder="Book Title" [(ngModel)]="book.name" name="name" (blur)="saveBookName(book)" class="title" >
