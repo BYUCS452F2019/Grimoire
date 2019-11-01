@@ -1,0 +1,15 @@
+.page {
+    display: grid;
+    margin: 20px;
+
+    .button-container {
+        margin-top: 25px;
+        display: grid;
+        grid-gap: 20px;
+        grid-template-columns: repeat(2, min-content);
+
+        button {
+            white-space: nowrap;
+        }
+    }
+}

@@ -9,11 +9,12 @@ import { SpellViewComponent } from './spell-view/spell-view.component';
 import { SpellStoreService } from './spell-store.service';
 import { MobxAngularModule } from 'mobx-angular';
 import { SpellBookComponent } from './spell-book/spell-book.component';
+import { AddSpellToBookComponent } from './add-spell-to-book/add-spell-to-book.component'
 
 
 
 @NgModule({
-  declarations: [SpellFormComponent, SpellViewComponent, SpellBookComponent],
+  declarations: [SpellFormComponent, SpellViewComponent, SpellBookComponent, AddSpellToBookComponent],
   imports: [
     CommonModule,
     SpellsRoutingModule,
