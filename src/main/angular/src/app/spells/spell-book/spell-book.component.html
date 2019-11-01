@@ -1,29 +1,30 @@
 <div class="page" *mobxAutorun>
-    <div class="book" *ngIf="spellStore.currentBook as book">
-        <h1>{{book.name}}</h1>
-        <div class="filters">
-            <input placeholder="name" type="text" [(ngModel)]="spellStore.filterName">
-            <input placeholder="level" type="number" [(ngModel)]="spellStore.filterLevel">
-            <select placeholder="class" [(ngModel)]="spellStore.filterClass">
-                <option value="">All Classes</option>
-                <option *ngFor="let class of classOptions" [value]="class">{{class}}</option>
-            </select>
-            <select placeholder="school" [(ngModel)]="spellStore.filterSchool">
-                    <option value="">All Schools</option>
-                    <option *ngFor="let school of schoolOptions" [value]="school">{{school}}</option>
-            </select>
-            <select placeholder="damage type" [(ngModel)]="spellStore.filterDamageType">
-                    <option value="">All Damage Types</option>
-                    <option *ngFor="let type of damageTypeOptions" [value]="type">{{type}}</option>
-            </select>
-        </div>
-        <div class="spells">
-            <div class="spell" *ngFor="let spell of spellStore.filteredSpells" (click)="routeToSpell(spell.spellId)">
-                <strong>{{spell.spellName}}</strong>
-                <span>Level: {{spell.level}}</span>
-                <span>{{spell.school}}</span>
-            </div>
-        </div>
+  <div class="book" *ngIf="spellStore.currentBook as book">
+    <h1>{{book.name}}</h1>
+    <div class="filters">
+      <input placeholder="name" type="text" [(ngModel)]="spellStore.filterName">
+      <input placeholder="level" type="number" [(ngModel)]="spellStore.filterLevel">
+      <select placeholder="class" [(ngModel)]="spellStore.filterClass">
+        <option value="">All Classes</option>
+        <option *ngFor="let class of classOptions" [value]="class">{{class}}</option>
+      </select>
+      <select placeholder="school" [(ngModel)]="spellStore.filterSchool">
+        <option value="">All Schools</option>
+        <option *ngFor="let school of schoolOptions" [value]="school">{{school}}</option>
+      </select>
+      <select placeholder="damage type" [(ngModel)]="spellStore.filterDamageType">
+        <option value="">All Damage Types</option>
+        <option *ngFor="let type of damageTypeOptions" [value]="type">{{type}}</option>
+      </select>
     </div>
-    <div *ngIf="!spellStore.currentBook">Let's see if we can find the grimoire you seek</div>
+    <div class="spells">
+      <div class="spell" *ngFor="let spell of spellStore.filteredSpells" (click)="routeToSpell(spell.spellId)">
+        <strong>{{spell.spellName}}</strong>
+        <span>Level: {{spell.level}}</span>
+        <span>{{spell.school}}</span>
+        <button mat-raised-button (click)="removeFromBook($event, spell)">remove</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="!spellStore.currentBook">Let's see if we can find the grimoire you seek</div>
 </div>

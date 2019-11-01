@@ -1,8 +1,9 @@
 <div class="page" *mobxAutorun>
-    <h1>Add '{{currentSpell?.spellName || 'spell'}}' to which books?</h1>
-    <mat-checkbox *ngFor="let book of openBooks" [(ngModel)]="book.addSpell">{{book.name}}</mat-checkbox>
-    <div class="button-container">
-        <button (click)="cancel()">Cancel</button>
-        <button (click)="addSpell()" [disabled]="!booksSelected">Add spell to books</button>
-    </div>
+  <h1>Add '{{currentSpell?.spellName || 'spell'}}' to which books?</h1>
+  <mat-checkbox *ngFor="let book of openBooks" [(ngModel)]="book.addSpell">{{book.name}}</mat-checkbox>
+  <div class="button-container">
+    <button mat-raised-button (click)="cancel()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="addSpell()" [disabled]="!booksSelected">Add spell to
+      books</button>
+  </div>
 </div>

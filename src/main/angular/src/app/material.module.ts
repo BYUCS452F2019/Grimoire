@@ -5,6 +5,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
+import { MatIconModule } from '@angular/material/icon';
 
 const modules = [
   MatToolbarModule,
@@ -13,6 +14,7 @@ const modules = [
   MatRadioModule,
   MatCheckboxModule,
   MatSelectModule,
+  MatIconModule
 ];
 
 @NgModule({
