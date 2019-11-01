@@ -26,7 +26,7 @@ public class SpellBookApi {
   private final SpellDao spells;
 
   @GetMapping(path = "/{id}")
-  public ResponseEntity<SpellBook> getSpellBook(int id) {
+  public ResponseEntity<SpellBook> getSpellBook(@PathVariable("id") int id) {
     Optional<SpellBook> result = spellBooks.getSpellBook(id);
     if (result.isPresent()) {
       return ResponseEntity.ok(result.get());
