@@ -37,9 +37,19 @@ export class HomeComponent implements OnInit {
     saveBookName(book) {
         if (book.name) {
             this.bookApi.addSpellBook(book.name).subscribe((returnedBook: any) => {
-                book = returnedBook.bookId
+                const lastBook = this.user.books.pop();
+                if (!lastBook.bookId && lastBook.name === returnedBook.name) {
+                    this.user.books.push(returnedBook);
+                } else {
+                    this.user.books.push(lastBook);
+                }
             });
         }
+    }
+
+    deleteBook(bookId) {
+        // TODO connect this to the non-existent backend
+        console.log('Sorry, you can\'t delete a book just yet...');
     }
 
 }

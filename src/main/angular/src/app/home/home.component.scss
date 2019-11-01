@@ -29,6 +29,10 @@
     width: 100%;
     font-size: 5vmax;
     text-shadow: -2px -2px 3px black;
+
+    &.silver {
+        color: #BEC2CB;
+    }
 }
 
 .new-spell-container {
@@ -42,7 +46,7 @@
         top: 25%;
         font-size: 5vmax;
         right: 0;
-        color: #EFC501;
+        color: #BEC2CB;
         text-shadow: -2px -2px 3px black;
     }
 }
@@ -65,6 +69,16 @@
     border-bottom-left-radius: 1vw;
     box-shadow: 5px 5px 8px -3px, 7px 8px 0px 0px #501B00;
     cursor: pointer;
+
+    .delete-icon {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+
+        &:hover {
+            color: #BEC2CB !important;
+        }
+    }
 }
 
 .title {
@@ -76,18 +90,3 @@
     text-shadow: -2px -2px 3px black;
 }
 
-.new-spell-container {
-    position: relative;
-    cursor: pointer;
-    img {
-        width: 100%;
-    }
-    .new-spell-title {
-        position: absolute;
-        top: 25%;
-        font-size: 5vmax;
-        right: 0;
-        color: #EFC501;
-        text-shadow: -2px -2px 3px black;
-    }
-}
