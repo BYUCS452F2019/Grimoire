@@ -16,4 +16,8 @@ public interface UserSpellBookRepository extends Repository<UserSpellBook, Integ
   @Modifying
   @Query("INSERT INTO user_spell_book (book_id, user_id) VALUES ( :bookId, :userId )")
   void addBookToUser(@Param("bookId") int bookId, @Param("userId") String userId);
+
+  @Modifying
+  @Query("DELETE FROM user_spell_book WHERE book_id = :bookId")
+  void deleteBook(@Param("bookId") int bookId);
 }

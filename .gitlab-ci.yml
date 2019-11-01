@@ -59,7 +59,7 @@ package:
       - target/grimoire.jar
 
 # This job runs automated tests and uploads code coverage statistics to gitlab.
-verify:
+.verify:
   image: registry.gitlab.com/byuhbll/apps/gitlab-ci-maven:3-jdk11
   stage: maven
   services:

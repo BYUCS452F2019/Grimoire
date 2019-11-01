@@ -47,4 +47,10 @@ public class SpellBookDao {
   public void addSpellToBook(int bookId, int spellId) {
     spellBookSpells.addSpellToBook(bookId, spellId);
   }
+
+  public void deleteSpellBook(int bookId) {
+    spellBooks.deleteById(bookId);
+    userSpellBooks.deleteBook(bookId);
+    spellBookSpells.deleteBook(bookId);
+  }
 }
