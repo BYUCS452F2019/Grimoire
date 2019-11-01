@@ -18,6 +18,9 @@ export class SpellStoreService {
     constructor(private spellApi: SpellApiService, private bookApi: SpellBookApiService){
         this.spellApi.getAllSpells().subscribe((spells: any) => { 
             this.allSpells = spells
+            if (_.get(this.currentBook, 'bookId') === 'all') {
+                this.currentBook.spells = spells;
+            }
         });
     }
 
@@ -60,13 +63,15 @@ export class SpellStoreService {
         })
     }
 
+
     @action
     getCurrentBook(bookId) {
         if (bookId === 'all') {
             this.currentBook = {
                 name: 'All Spells',
                 spells: this.allSpells,
-            }
+                bookId: 'all',
+            };;
         } else {
             this.bookApi.getSpellBook(bookId).subscribe((book) => {
                 this.currentBook = book

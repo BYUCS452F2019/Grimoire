@@ -1,6 +1,9 @@
 <div class="page" *mobxAutorun>
     <div class="spell" *ngIf="spellStore.currentSpell as spell">
-        <span class="name">{{spell.spellName}}</span>
+        <div class="header">
+            <span class="name">{{spell.spellName}}</span>
+            <button (click)="addSpell(spell)">Add to book</button>
+        </div>
         <div class="attribute-container">
             <span class="level">{{spell.level? 'level ' + spell.level : 'Cantrip'}}</span>
             <span class="school">{{spell.school}}</span>

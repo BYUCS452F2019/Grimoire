@@ -19,4 +19,8 @@ export class SpellViewComponent implements OnInit {
         })
     }
 
+    addSpell(spell) {
+        this.router.navigate(['spells/add/', spell.spellId]);
+    }
+
 }
