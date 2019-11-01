@@ -53,4 +53,8 @@ public class SpellBookDao {
     userSpellBooks.deleteBook(bookId);
     spellBookSpells.deleteBook(bookId);
   }
+
+  public void removeSpellFromBook(int bookId, int spellId) {
+    spellBookSpells.removeSpellFromBook(bookId, spellId);
+  }
 }

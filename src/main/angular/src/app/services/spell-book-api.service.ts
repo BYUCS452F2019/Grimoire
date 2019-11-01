@@ -28,4 +28,10 @@ export class SpellBookApiService {
   public deleteSpellBook(id: number) {
     return this.httpClient.delete(`https://grimoire.benwelker.com/api/spellbooks/${id}`);
   }
+
+  public removeSpellFromBook(bookId: number, spellId: number) {
+    return this.httpClient.delete(
+      `https://grimoire.benwelker.com/api/spellbooks/${bookId}/${spellId}`
+    );
+  }
 }
