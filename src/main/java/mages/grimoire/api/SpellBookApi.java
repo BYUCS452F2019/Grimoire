@@ -69,8 +69,15 @@ public class SpellBookApi {
   }
 
   @DeleteMapping("/{bookId}")
-  public ResponseEntity<SpellBook> deleteSpellBook(@PathVariable("bookId") int bookId) {
+  public ResponseEntity<?> deleteSpellBook(@PathVariable("bookId") int bookId) {
     spellBooks.deleteSpellBook(bookId);
+    return ResponseEntity.ok().build();
+  }
+
+  @DeleteMapping("/{bookId}/{spellId}")
+  public ResponseEntity<?> removeSpellFromBook(
+      @PathVariable("bookId") int bookId, @PathVariable("spellId") int spellId) {
+    spellBooks.removeSpellFromBook(bookId, spellId);
     return ResponseEntity.ok().build();
   }
 }
