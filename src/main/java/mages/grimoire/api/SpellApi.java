@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.stream.StreamSupport;
+
 /** SpellApi */
 @RestController
 @RequestMapping("/api/spells")
@@ -25,6 +27,8 @@ public class SpellApi {
 
   @PostMapping
   public ResponseEntity<Spell> addSpell(@RequestBody Spell spell) {
+    int nextId = StreamSupport.stream(spells.findAll().spliterator(), false).map(savedspell -> savedspell.getSpellId()).max(Integer::compareTo).orElse(0) + 1;
+    spell.setSpellId(nextId);
     spells.save(spell);
     return ResponseEntity.ok(spell);
   }
