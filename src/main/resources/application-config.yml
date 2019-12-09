@@ -6,10 +6,9 @@
 config: {}
 
 spring:
-  datasource:
-    url: jdbc:mysql://mariadb:3306/grimoire?useLegacyDatetimeCode=false&serverTimezone=America/Denver
-    username: grimoire
-    password: grimoire1234
+  data:
+    mongodb:
+      database: grimoire
 keycloak:
   enabled: true
   auth-server-url: https://kc.lib.byu.edu/auth

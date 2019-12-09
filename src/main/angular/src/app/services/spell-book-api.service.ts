@@ -9,29 +9,29 @@ export class SpellBookApiService {
 
   public addSpellBook(bookName) {
     return this.httpClient.post(
-      `https://grimoire.benwelker.com/api/spellbooks?name=${bookName}`,
+      `/api/spellbooks?name=${bookName}`,
       null
     );
   }
 
   public addSpellToBook(bookId, spellId) {
     return this.httpClient.post(
-      `https://grimoire.benwelker.com/api/spellbooks/${bookId}?spellId=${spellId}`,
+      `/api/spellbooks/${bookId}?spellId=${spellId}`,
       null
     );
   }
 
   public getSpellBook(id) {
-    return this.httpClient.get(`https://grimoire.benwelker.com/api/spellbooks/${id}`);
+    return this.httpClient.get(`/api/spellbooks/${id}`);
   }
 
   public deleteSpellBook(id: number) {
-    return this.httpClient.delete(`https://grimoire.benwelker.com/api/spellbooks/${id}`);
+    return this.httpClient.delete(`/api/spellbooks/${id}`);
   }
 
   public removeSpellFromBook(bookId: number, spellId: number) {
     return this.httpClient.delete(
-      `https://grimoire.benwelker.com/api/spellbooks/${bookId}/${spellId}`
+      `/api/spellbooks/${bookId}/${spellId}`
     );
   }
 }

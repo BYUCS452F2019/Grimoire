@@ -2,7 +2,7 @@ package mages.grimoire.api;
 
 import java.security.Principal;
 import lombok.AllArgsConstructor;
-import mages.grimoire.dao.UserDao;
+import mages.grimoire.dao.spring.UserRepository;
 import mages.grimoire.model.User;
 import org.keycloak.KeycloakPrincipal;
 import org.keycloak.adapters.RefreshableKeycloakSecurityContext;
@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 @AllArgsConstructor
 public class UserApi {
 
-  private UserDao users;
+  private UserRepository users;
 
   @GetMapping
   public ResponseEntity<User> getUser(Principal principal) {
@@ -27,13 +27,13 @@ public class UserApi {
     String userId = idToken.getSubject();
     User grimoireUser =
         users
-            .getUser(userId)
+            .findById(userId)
             .orElseGet(
                 () -> {
                   User user = new User();
                   user.setUserId(userId);
                   user.setName(idToken.getName());
-                  return users.addUser(user);
+                  return users.save(user);
                 });
 
     return ResponseEntity.ok(grimoireUser);

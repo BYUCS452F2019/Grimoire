@@ -4,10 +4,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 /** Spell */
 @Data
+@Document
 public class Spell {
 
   @Id private int spellId;
@@ -31,8 +32,19 @@ public class Spell {
   private String higherLevels;
   private String damage;
   private String damageType;
-  @Transient private List<ClassType> classType;
+  private List<ClassType> classType;
   private String book;
+
+  public static enum ClassType {
+    Bard,
+    Cleric,
+    Druid,
+    Paladin,
+    Ranger,
+    Sorcerer,
+    Warlock,
+    Wizard
+  }
 
   public static enum School {
     Abjuration,
@@ -43,7 +55,6 @@ public class Spell {
     Illusion,
     Necromancy,
     Transmutation;
-
   }
 
   public static enum Target {
