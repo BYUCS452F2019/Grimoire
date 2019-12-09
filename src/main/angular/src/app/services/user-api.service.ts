@@ -9,6 +9,6 @@ export class UserApiService {
   constructor(private httpClient: HttpClient) { }
 
   public getUser() {
-      return this.httpClient.get(`https://grimoire.benwelker.com/api/user`);
+      return this.httpClient.get(`/api/user`);
   }
 }

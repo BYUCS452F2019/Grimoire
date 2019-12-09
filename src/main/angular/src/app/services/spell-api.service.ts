@@ -9,10 +9,10 @@ export class SpellApiService {
   constructor(private httpClient: HttpClient) { }
 
   public getAllSpells() {
-      return this.httpClient.get(`https://grimoire.benwelker.com/api/spells`);
+      return this.httpClient.get(`/api/spells`);
   }
 
   public addSpell(spell) {
-      return this.httpClient.post(`https://grimoire.benwelker.com/api/spells`, spell);
+      return this.httpClient.post(`/api/spells`, spell);
   }
 }
