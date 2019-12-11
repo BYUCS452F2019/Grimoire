@@ -1,0 +1,9 @@
+Grimoire
+
+This seems like a pretty straightforward application to build. Plus, I know the other two people that will be working on it.
+
+Business - Everything here looks good. I particularly like the idea of crowdsourcing data.
+
+Legal - I agree that publishing this app with its associated data would require some agreement from the publishers of the data sources. As far as this class goes, we're definitely covered by fair use laws.
+
+Technical - I definitely agree with Angular for the frontend. I'm not super familiar with the other technologies listed for the backend (netjs/Firebase), but if we were to go with a Java/Spring backend, I can get it hosted on the BYU Library's servers and set up with a CI/CD pipeline.
